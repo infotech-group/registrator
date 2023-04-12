@@ -19,6 +19,7 @@ var Version string
 
 var versionChecker = usage.NewChecker("registrator", Version)
 
+var project = flag.String("project", "", "If present, only containers which have matching SERVICE_[PORT_]PROJECT_NAME will be registered")
 var hostIp = flag.String("ip", "", "IP for ports mapped to the host")
 var internal = flag.Bool("internal", false, "Use internal ports instead of published ones")
 var explicit = flag.Bool("explicit", false, "Only register containers which have SERVICE_NAME label set")
@@ -103,6 +104,7 @@ func main() {
 	}
 
 	b, err := bridge.New(docker, flag.Arg(0), bridge.Config{
+		ProjectName:     *project,
 		HostIp:          *hostIp,
 		Internal:        *internal,
 		Explicit:        *explicit,

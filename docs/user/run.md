@@ -32,7 +32,8 @@ hostname (`-h $HOSTNAME`) and using the `-ip` Registrator option below.
 ## Registrator Options
 
 Option                           | Since | Description
-------                           | ----- | -----------
+------                           |-------| -----------
+`-project <name>`                |       | If present, only containers which have SERVICE_PROJECT_NAME metadata will be registered
 `-cleanup`                       | v7    | Cleanup dangling services
 `-deregister <mode>`             | v6    | Deregister exited services "always" or "on-success". Default: always
 `-internal`                      |       | Use exposed ports instead of published ports

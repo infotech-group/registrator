@@ -268,6 +268,11 @@ func (b *Bridge) newService(port ServicePort, isgroup bool) *Service {
 
 	metadata, metadataFromPort := serviceMetaData(container.Config, port.ExposedPort)
 
+    differentProject := b.config.ProjectName != "" && b.config.ProjectName != mapDefault(metadata, "project_name", "")
+    if differentProject {
+		return nil
+	}
+
 	ignore := mapDefault(metadata, "ignore", "")
 	if ignore != "" {
 		return nil
